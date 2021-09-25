@@ -7,19 +7,19 @@
  
   <meta charset="utf-8">
 
-  <title>Client</title>
+  <title>Local Storage</title>
   
   <!-- 120 word description for SEO purposes goes here. Note: Usage of lang tag. -->
-  <!-- <meta name="description" lang="en" content=""> -->
+  <meta name="description" lang="en" content="Local Storage">
   
   <!-- Keywords to help with SEO go here. Note: Usage of lang tag.  -->
-  <!-- <meta name="keywords" lang="en" content=""> -->
+  <meta name="keywords" lang="en" content="Local Storage">
   
   <!-- View-port Basics: http://mzl.la/VYREaP -->
   <!-- This meta tag is used for mobile device to display the page without any zooming,
        so how much the device is able to fit on the screen is what's shown initially. 
        Remove comments from this tag, when you want to apply media queries to the website. -->
-  <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <!-- To adhear no-cache for Chrome -->
 <!--   <meta http-equiv="cache-control" content="no-store, no-cache, must-revalidate" />
@@ -45,22 +45,32 @@
 <body>
   <!--container start-->
   <div class="container">
-    <!--header section start-->
-    <header>
-      
-    </header>
-    <!--header section start-->
+
     <!--main section start-->
     <main>
+      <section>
+        <div class="main-section">
+          <h2>local storage</h2>
+          <form action="#fixme" method="POST">
+            <div class="form-control">
+              <label for="item">Item:</label>
+              <input type="text" placeholder="Enter the item" id="item" class="item">
+            </div>
+            <div class="form-control">
+              <label for="quantity">Quantity:</label>
+              <input type="text" placeholder="Enter the quantity of item" id="quantity" class="quantity">
+            </div>
+            <div class="form-button">
+              <button>save</button>
+            </div>
+          </form>
+
+        </div>
+
+      </section>
 
     </main>
     <!--main section end-->
-
-    <!--footer section start-->
-    <footer>      
-
-    </footer>
-    <!--footer section end-->
 
   </div>
   <!--container end-->
