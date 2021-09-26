@@ -103,24 +103,98 @@ li {
   width: 86%; 
   margin: 0 auto;
 }
-/*=================================
-  Header styling starts here
-=================================*/
-
-
-
-
-
-
-/*=================================
-  Header styling ends here
-=================================*/  
 
 /*=================================
   main styling starts here
 =================================*/
 
+.main-section { margin-bottom: 100px; }
 
+.main-section h2,
+.data-display h3 {
+  padding: 40px 0;
+  font-size: 30px;
+  font-family: serif;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+form,
+.item-display {
+  width: 50%;
+  margin: 0 auto;
+}
+
+
+.form-control { margin-bottom: 30px }
+
+.form-control label {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.form-control input {
+  width: 40%;
+  height: 30px;
+}
+
+form button {
+  width: 15%;
+  padding: 8px 0;
+  border-radius: 8px;
+  background-color: #4E4040;
+  color: #CFCFCF;
+  font-weight: bold;
+  text-transform: uppercase; 
+  transition: 1s; 
+}
+
+form button:hover,
+.clear:hover {
+  background-color: #659DB4;
+  color: #FFFFFF;
+}
+
+.item-display { 
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px; 
+  background-color: #DBBFC9;
+}
+
+.clear {
+  width: 10%;
+  padding: 10px 0;
+  border-radius: 8px;
+  margin-left: 40%;
+  background-color: #4E4040;
+  color: #CFCFCF;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.item-text,
+.quan-text {
+  margin-bottom: 10px;
+  font-size: 20px;
+  text-transform: capitalize;
+}
+
+.item-display button {
+  width: 15%;
+  padding: 10px 0;
+  border-radius: 6px;
+  margin-left: 3%;
+  background-color: #254284;
+  color: #FFFFFF;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: 1s;
+}
+
+.item-display .modify { margin-left: 0; }
+.item-display button:hover { background-color: #4E4040; }
 
 
 
@@ -131,24 +205,3 @@ li {
   main styling ends here
 =================================*/
 
-/*=================================
-  footer styling starts here
-=================================*/ 
-
-
-
-
-
-
-
- /*=================================
-  footer styling ends here
-=================================*/ 
-
-/*media query starts*/
-/*media query for 995px starts here*/
-@media only screen and (max-width: 995px) {
-
-
-
-}  
