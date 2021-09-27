@@ -1,12 +1,47 @@
+let form = document.querySelector('.form');
 let saveBtn = document.querySelector('.save');
 let itemText = document.querySelector('.item');
 let quantityText = document.querySelector('.quantity');
+let textLength = /^[A-Za-z. ]{3,30}$/;
+let numLength = /^[0-9]*$/;
 
-saveBtn.addEventListener('click', (e) => {
-    if(itemText.value == "" || quantityText.value == "") {
-        return alert('Please fill all fields');
+let errorMsg = (input, message) => {
+    var formControl = input.parentElement;
+    var small = formControl.querySelector('span');
+    small.innerText = message;
+    formControl.className += ' error';
+}
+
+let successMsg = (input) => {
+    var formControl = input.parentElement;
+    formControl.className = ' success';
+}
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    inputValue();
+})
+
+let inputValue = () => {
+    if(itemText.value === "") {
+        errorMsg(itemText, '*This field is required');
+    } else if(!textLength.test(itemText.value)  || itemText.value.length < 1) {
+        errorMsg(itemText, 'Enter valid item');
+    } else {
+        successMsg(itemText);
     }
 
+    if(quantityText.value == "") {
+        errorMsg(quantityText, '*This field is required');
+    } else if(!numLength.test(quantityText.value)  || quantityText.value.length < 1) {
+        errorMsg(quantityText, 'Enter valid quantity');
+    } else {
+        successMsg(quantityText);
+    }
+}
+
+saveBtn.addEventListener('click', (e) => {
+    
     let item = localStorage.getItem("item");
     if(item == null) {
         itemObject = [];
@@ -39,8 +74,8 @@ itemObject.forEach((element, index) => {
     <div class="item-display">
     <h4 class="item-text"> Item: ${element.itemTitle}</h4>
     <p class="quan-text">Ouantity: ${element.itemQuantity}</p>
-    <button class="modify" id="${index}" onclick="modify(this.id)">modify</button>
-    <button class="remove" id="${index}" onclick="remove(this.id)">remove</button>
+    <button class="${index}" onclick="modify(this.class)">modify</button>
+    <button class="${index}" onclick="remove(this.class)">remove</button>
     </div>
     `;
 }); 
