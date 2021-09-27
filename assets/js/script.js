@@ -28,7 +28,6 @@ let inputValue = (e) => {
         error = true;
     } else {
         successMsg(itemText);
-        return error;
     }
 
     if(quantityText.value == "") {
@@ -39,11 +38,9 @@ let inputValue = (e) => {
         error = true;
     } else {
         successMsg(quantityText);
-        return error;
     }
     return error;
 }
-
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -97,19 +94,16 @@ if(itemObject.length != 0) {
 
 //remove function
 let remove = (index) => {
-    let confirmRemove = confirm("Do you want to remove the item!");
-
-    if(confirmRemove == true) {
-        let item = localStorage.getItem("item");
-        if(item == null) {
-            itemObject = [];
-        } else {
-            itemObject = JSON.parse(item);
-        }
-        itemObject.splice(index, 1);
-        localStorage.setItem("item", JSON.stringify(itemObject));
-        displayContent();
-    }
+    let item = localStorage.getItem("item");
+    if(item == null) {
+    itemObject = [];
+} else {
+    itemObject = JSON.parse(item);
+}
+itemObject.splice(index, 1);
+localStorage.setItem("item", JSON.stringify(itemObject));
+displayContent();
+    
 }
 
 
@@ -146,7 +140,6 @@ clearDisplay.addEventListener('click', () => {
     } 
     localStorage.setItem("item", JSON.stringify(itemObject));
     displayContent();
-
 })
 
 displayContent();
