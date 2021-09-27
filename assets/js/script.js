@@ -7,58 +7,64 @@ let numLength = /^[0-9]*$/;
 
 let errorMsg = (input, message) => {
     var formControl = input.parentElement;
-    var small = formControl.querySelector('span');
+    var small = input.nextElementSibling;
     small.innerText = message;
     formControl.className += ' error';
 }
 
 let successMsg = (input) => {
     var formControl = input.parentElement;
-    formControl.className = ' success';
+    formControl.className += ' success';
 }
 
-form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    inputValue();
-})
 
-let inputValue = () => {
-    if(itemText.value === "") {
+let inputValue = (e) => {
+    let error = false;
+    if(itemText.value == "") {
         errorMsg(itemText, '*This field is required');
-    } else if(!textLength.test(itemText.value)  || itemText.value.length < 1) {
+        error = true;
+    } else if(!textLength.test(itemText.value)) {
         errorMsg(itemText, 'Enter valid item');
+        error = true;
     } else {
         successMsg(itemText);
+        return error;
     }
 
     if(quantityText.value == "") {
         errorMsg(quantityText, '*This field is required');
-    } else if(!numLength.test(quantityText.value)  || quantityText.value.length < 1) {
+        error = true;
+    } else if(!numLength.test(quantityText.value)) {
         errorMsg(quantityText, 'Enter valid quantity');
+        error = true;
     } else {
         successMsg(quantityText);
+        return error;
     }
+    return error;
 }
 
-saveBtn.addEventListener('click', (e) => {
-    
-    let item = localStorage.getItem("item");
-    if(item == null) {
-        itemObject = [];
-    } else {
-        itemObject = JSON.parse(item);
-    }
-    let myObj = {
-        itemTitle: itemText.value,
-        itemQuantity: quantityText.value
-    }
-    itemObject.push(myObj);
-    localStorage.setItem("item", JSON.stringify(itemObject));
-    itemText.value = "";
-    quantityText.value = "";
 
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if(!inputValue()) {
+        let item = localStorage.getItem("item");
+        if(item == null) {
+            itemObject = [];
+        } else {
+            itemObject = JSON.parse(item);
+        }
+        let myObj = {
+            itemTitle: itemText.value,
+            itemQuantity: quantityText.value
+        }
+        itemObject.push(myObj);
+        localStorage.setItem("item", JSON.stringify(itemObject));
+        itemText.value = "";
+        quantityText.value = "";
+    }
     displayContent();
-})
+});
 
 let displayContent = () => {
     let item = localStorage.getItem("item");
@@ -68,15 +74,15 @@ let displayContent = () => {
         itemObject = JSON.parse(item);
     } 
 
-let display = " ";
-itemObject.forEach((element, index) => {
-    display += `
-    <div class="item-display">
-    <h4 class="item-text"> Item: ${element.itemTitle}</h4>
-    <p class="quan-text">Ouantity: ${element.itemQuantity}</p>
-    <button class="${index}" onclick="modify(this.class)">modify</button>
-    <button class="${index}" onclick="remove(this.class)">remove</button>
-    </div>
+    let display = " ";
+    itemObject.forEach((element, index) => {
+        display += `
+        <div class="item-display">
+        <h4 class="item-text"> Item: ${element.itemTitle}</h4>
+        <p class="quan-text">Ouantity: ${element.itemQuantity}</p>
+        <button class="${index}" onclick="modify(this.class)">modify</button>
+        <button class="${index}" onclick="remove(this.class)">remove</button>
+        </div>
     `;
 }); 
 
@@ -100,7 +106,6 @@ let remove = (index) => {
         } else {
             itemObject = JSON.parse(item);
         }
-
         itemObject.splice(index, 1);
         localStorage.setItem("item", JSON.stringify(itemObject));
         displayContent();
