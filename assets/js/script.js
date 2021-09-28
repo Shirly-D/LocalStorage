@@ -7,13 +7,21 @@ let numLength = /^[0-9]*$/;
 
 let errorMsg = (input, message) => {
     var formControl = input.parentElement;
+    if(formControl.classList.contains('success')) {
+        formControl.classList.remove('success');
+    }
     var small = input.nextElementSibling;
     small.innerText = message;
+    if(!formControl.classList.contains('error'))
     formControl.className += ' error';
 }
 
 let successMsg = (input) => {
     var formControl = input.parentElement;
+    if(formControl.classList.contains('error')) {
+        formControl.classList.remove('error');
+    }
+    if(!formControl.classList.contains('success'))
     formControl.className += ' success';
 }
 
@@ -42,8 +50,28 @@ let inputValue = (e) => {
     return error;
 }
 
-form.addEventListener('focusout', () => {
+itemText.addEventListener('focusout', () => {
+    if(itemText.nextElementSibling.classList.contains('none')) {
+        itemText.nextElementSibling.classList.remove('none');
+    }
     inputValue();
+})
+
+quantityText.addEventListener('focusout', () => {
+    if(itemText.nextElementSibling.classList.contains('none')) {
+        itemText.nextElementSibling.classList.remove('none');
+    }
+    inputValue();
+})
+
+itemText.addEventListener('focus', () => {
+    console.log("S");  
+    itemText.nextElementSibling.className = 'none';
+})
+
+quantityText.addEventListener('focus', () => {
+    console.log("S");  
+    quantityText.nextElementSibling.className = 'none';
 })
 
 form.addEventListener('submit', (e) => {
