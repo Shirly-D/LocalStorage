@@ -139,8 +139,8 @@ form,
   height: 30px;
 }
 
-.success { border-color: #2ecc71; }
-.error { border-color: #e74c3c; }
+.success input { border-color: #2ecc71; }
+.error input { border-color: #e74c3c; }
 
 .form-control span {
   display: inherit;
@@ -152,6 +152,8 @@ form,
   color: #e74c3c;
   visibility: visible;
 }
+
+.form-control .none { visibility: hidden; }
 
 
 form button {
