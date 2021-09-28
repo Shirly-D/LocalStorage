@@ -5,6 +5,7 @@ let quantityText = document.querySelector('.quantity');
 let textLength = /^[A-Za-z. ]{3,30}$/;
 let numLength = /^[0-9]*$/;
 
+//error message function
 let errorMsg = (input, message) => {
     var formControl = input.parentElement;
     if(formControl.classList.contains('success')) {
@@ -16,6 +17,7 @@ let errorMsg = (input, message) => {
     formControl.className += ' error';
 }
 
+//success message function
 let successMsg = (input) => {
     var formControl = input.parentElement;
     if(formControl.classList.contains('error')) {
@@ -25,7 +27,7 @@ let successMsg = (input) => {
     formControl.className += ' success';
 }
 
-
+//form validation 
 let inputValue = (e) => {
     let error = false;
     if(itemText.value == "") {
@@ -50,6 +52,7 @@ let inputValue = (e) => {
     return error;
 }
 
+//input field focusout function
 itemText.addEventListener('focusout', () => {
     if(itemText.nextElementSibling.classList.contains('none')) {
         itemText.nextElementSibling.classList.remove('none');
@@ -64,6 +67,7 @@ quantityText.addEventListener('focusout', () => {
     inputValue();
 })
 
+//input field focus function
 itemText.addEventListener('focus', () => { 
     itemText.nextElementSibling.className = 'none';
 })
@@ -72,6 +76,7 @@ quantityText.addEventListener('focus', () => {
     quantityText.nextElementSibling.className = 'none';
 })
 
+//on submit trigger 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     if(!inputValue()) {
@@ -93,6 +98,7 @@ form.addEventListener('submit', (e) => {
     displayContent();
 });
 
+//display items after proper validation 
 let displayContent = () => {
     let item = localStorage.getItem("item");
     if(item == null) {
@@ -109,20 +115,18 @@ let displayContent = () => {
         <p class="quan-text">Ouantity: ${element.itemQuantity}</p>
         <button class="${index}" onclick="modify(this.class)">modify</button>
         <button class="${index}" onclick="remove(this.class)">remove</button>
-        </div>
-    `;
-}); 
-
-let displaySection = document.querySelector('.display');
-if(itemObject.length != 0) {
-    displaySection.innerHTML = display;
-} else {
-    displaySection.innerHTML = "No item added";
+        </div>`;
+    }); 
+    
+    let displaySection = document.querySelector('.display');
+    if(itemObject.length != 0) {
+        displaySection.innerHTML = display;
+    } else {
+        displaySection.innerHTML = "No item added";
+    }
 }
 
-}
-
-//remove function
+//remove items function
 let remove = (index) => {
     let item = localStorage.getItem("item");
     if(item == null) {
@@ -137,7 +141,7 @@ displayContent();
 }
 
 
-//modify function
+//modify items function
 let modify = (index) => {
     let item = localStorage.getItem("item");
     if(itemText.value !== "" || quantityText.value !== "") {
