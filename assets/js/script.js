@@ -58,19 +58,17 @@ itemText.addEventListener('focusout', () => {
 })
 
 quantityText.addEventListener('focusout', () => {
-    if(itemText.nextElementSibling.classList.contains('none')) {
-        itemText.nextElementSibling.classList.remove('none');
+    if(quantityText.nextElementSibling.classList.contains('none')) {
+        quantityText.nextElementSibling.classList.remove('none');
     }
     inputValue();
 })
 
-itemText.addEventListener('focus', () => {
-    console.log("S");  
+itemText.addEventListener('focus', () => { 
     itemText.nextElementSibling.className = 'none';
 })
 
-quantityText.addEventListener('focus', () => {
-    console.log("S");  
+quantityText.addEventListener('focus', () => { 
     quantityText.nextElementSibling.className = 'none';
 })
 
