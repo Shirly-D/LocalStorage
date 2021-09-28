@@ -42,6 +42,10 @@ let inputValue = (e) => {
     return error;
 }
 
+itemText.addEventListener('focusout', () => {
+    inputValue();
+})
+
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     if(!inputValue()) {
