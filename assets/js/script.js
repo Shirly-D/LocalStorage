@@ -42,7 +42,7 @@ let inputValue = (e) => {
     return error;
 }
 
-itemText.addEventListener('focusout', () => {
+form.addEventListener('focusout', () => {
     inputValue();
 })
 
